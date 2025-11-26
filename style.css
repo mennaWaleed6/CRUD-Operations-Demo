@@ -1,0 +1,307 @@
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px 20px;
+        }
+        
+        .container-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .card-header-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header-custom h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .card {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .card-body {
+            padding: 30px;
+            background: white;
+        }
+        
+        .btn-add-product {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 16px;
+        }
+        
+        .btn-add-product:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        
+        table.dataTable {
+            border-collapse: collapse;
+        }
+        
+        table.dataTable thead th {
+            background: #f8f9fa;
+            color: #333;
+            font-weight: 600;
+            border-bottom: 2px solid #dee2e6;
+            padding: 16px !important;
+            text-align: left;
+            font-size: 14px;
+        }
+        
+        table.dataTable tbody td {
+            padding: 14px 16px !important;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+        table.dataTable tbody td:nth-child(2) {
+            text-align: left;
+        }
+        table.dataTable tbody tr {
+            transition: background-color 0.2s;
+        }
+        
+        table.dataTable tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn-edit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 18px;
+        }
+        
+        .btn-edit:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-delete {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 18px;
+        }
+        
+        .btn-delete:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
+        }
+        
+        /* Modal Styling */
+        .modal-content {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 20px 30px;
+        }
+        
+        .modal-header .modal-title {
+            font-weight: 600;
+            font-size: 20px;
+        }
+        
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .form-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        .modal-footer {
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            padding: 20px 30px;
+        }
+        
+        .btn-submit-modal {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        .btn-submit-modal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+        
+        .btn-close-modal {
+            background: #e0e0e0;
+            border: none;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .btn-close-modal:hover {
+            background: #d0d0d0;
+        }
+        
+        /* DataTables Pagination Styling */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            background: white;
+            border: 1px solid #dee2e6;
+            color: #667eea !important;
+            padding: 8px 12px;
+            margin: 0 2px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #667eea;
+            color: white !important;
+            border-color: #667eea;
+        }
+        
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            border-color: #667eea;
+        }
+        
+        /* Search Styling */
+        .dataTables_filter input {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+        }
+        
+        .dataTables_filter input:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .card-header-custom {
+                padding: 20px;
+            }
+            
+            .card-header-custom h1 {
+                font-size: 22px;
+            }
+            
+            .card-body {
+                padding: 20px;
+            }
+            
+            .btn-edit, .btn-delete {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            
+            table.dataTable thead th,
+            table.dataTable tbody td {
+                padding: 12px 8px !important;
+                font-size: 12px;
+            }
+        }
