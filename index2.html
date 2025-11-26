@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <title>Crud Operation</title>
+    <link rel="stylesheet" type="text/css" href="style2.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" 
+      href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
+
+<script 
+ src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
+
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <form autocomplete="off" onsubmit="onFormSubmit()">
+                    <div>
+                        <label for="productCode">Product Code</label>
+                        <input required type="text" id="productCode" name="productCode">
+                    </div>
+                    <div>
+                        <label for="product">Product Name</label>
+                        <input type="text" id="product" name="product">
+                    </div>
+                    <div>
+                        <label for="qty">Qty</label>
+                        <input type="number" id="qty" name="qty">
+                    </div>
+                    <div>
+                        <label for="perPrice">Price</label>
+                        <input type="number" id="perPrice" name="perPrice">
+                    </div>
+                    <div class="form_action--button">
+                        <input type="submit" value="Submit">
+                        <input type="reset" value="Reset">
+                    </div>
+                </form>
+                <td>
+                    <table class="list" id="storelist"> 
+                        <thead>
+                            <tr>
+                                <th>Product Code</th>
+                                <th>Product Name</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                         <tr>
+        <td>001</td>
+        <td>Keyboard</td>
+        <td>5</td>
+        <td>150</td>
+        <td>
+            <button class="editBtn">Edit</button>
+            <button class="deleteBtn">Delete</button>
+        </td>
+    </tr>
+    <tr>
+        <td>002</td>
+        <td>Mouse</td>
+        <td>10</td>
+        <td>80</td>
+         <td>
+        <button class="editBtn">Edit</button>
+        <button class="deleteBtn">Delete</button>
+    </td>
+    </tr>
+    <tr>
+        <td>003</td>
+        <td>Monitor</td>
+        <td>2</td>
+        <td>1200</td>
+        <td>
+        <button class="editBtn">Edit</button>
+        <button class="deleteBtn">Delete</button>
+    </td>
+    </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </td>
+        
+        </tr>
+        </table>
+        <script src="script.js"></script>
+    </body>
+</html>
