@@ -10,10 +10,67 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 40px 20px;
         }
+
+        .language-switcher {
+            position: relative;
+            top: auto;
+            right: auto;
+            left: auto;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+        .language-switcher select {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-switcher select:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .language-switcher select option {
+            background: #667eea;
+            color: white;
+        }
+        .lang-btn {
+            padding: 10px 18px;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+         .lang-btn i {
+            margin-right: 5px;
+        }
         
         .container-wrapper {
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
         }
         
         .card-header-custom {
@@ -39,11 +96,13 @@
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 30px;
+            width: 100%;
         }
         
         .card-body {
             padding: 30px;
             background: white;
+            width: 100%;
         }
         
         .btn-add-product {
@@ -66,10 +125,21 @@
         .table-container {
             overflow-x: auto;
             margin-top: 20px;
+            width: 100%;
         }
         
         table.dataTable {
             border-collapse: collapse;
+            width: 100% !important;
+        }
+        html.rtl table.dataTable,
+        html.rtl .dataTables_wrapper {
+            width: 100% !important;
+        }
+
+        html.ltr table.dataTable,
+        html.ltr .dataTables_wrapper {
+            width: 100% !important;
         }
         
         table.dataTable thead th {
@@ -160,16 +230,37 @@
             color: white;
             border: none;
             padding: 20px 30px;
+            position: relative;
         }
         
         .modal-header .modal-title {
             font-weight: 600;
             font-size: 20px;
         }
+
+     /*   html[dir="rtl"] .btn-close {
+        margin-left: auto !important;
+        margin-right: 0 !important;
+    }*/
+        .btn-close {
+        position: absolute;
+        
+        right: 20px;
+        left: auto;
+        filter: brightness(0) invert(1);
+        }
+
+        /* RTL Arabic */
+        html[dir="rtl"] .btn-close {
+            right: auto !important;
+            left: 20px !important;
+            float: none !important;
+        }
         
         .modal-header .btn-close {
             filter: brightness(0) invert(1);
         }
+        
         
         .modal-body {
             padding: 30px;
@@ -185,6 +276,15 @@
             margin-bottom: 8px;
             font-size: 14px;
         }
+          .form-error {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #dc3545;
+            animation: slideDown 0.3s ease-out;
+        }
+
         
         .form-control {
             border: 2px solid #e0e0e0;
@@ -192,6 +292,7 @@
             padding: 12px 16px;
             font-size: 14px;
             transition: border-color 0.3s;
+            width: 100%;
         }
         
         .form-control:focus {
@@ -274,11 +375,25 @@
             outline: none;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
+
+
+        html.rtl .dataTables_wrapper .dataTables_length { float: right; text-align: right;}
+        html.rtl .dataTables_wrapper .dataTables_filter { float: left; }
+        html.rtl .dataTables_wrapper .dataTables_filter label { flex-direction: row-reverse; }
+        html.rtl .dataTables_wrapper .dataTables_length label { flex-direction: row-reverse; }
+        html.rtl .dataTables_wrapper .dataTables_filter input { margin-left: 10px !important; }
+        html.rtl .dataTables_wrapper .dataTables_length select { margin-left: 8px !important; }
+        /*.dataTables_wrapper::after { clear: both; }
         
         /* Responsive Design */
         @media (max-width: 768px) {
             body {
                 padding: 20px 10px;
+            }
+
+             .language-switcher {
+                top: 10px;
+                right: 10px;
             }
             
             .card-header-custom {
@@ -304,4 +419,67 @@
                 padding: 12px 8px !important;
                 font-size: 12px;
             }
+
+             .lang-btn {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
         }
+/* ═══════════════════════════════════════════════════════════════════ */
+/* DATATABLE 2.3.5 + BOOTSTRAP 5 RTL/LTR                               */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+html.ltr .dt-container .row {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+}
+
+html.ltr .dt-container .row > div:first-child {
+    order: 1 !important;
+}
+
+html.ltr .dt-container .row > div:last-child {
+    order: 2 !important;
+    margin-left: auto !important;
+}
+
+html.ltr .dt-length {
+    text-align: left !important;
+}
+
+html.ltr .dt-search {
+    text-align: right !important;
+}
+
+/* RTL */
+html.rtl .dt-container .row {
+    flex-direction: row-reverse !important;
+    justify-content: space-between !important;
+}
+
+html.rtl .dt-container .row > div:first-child {
+    order: 2 !important;
+}
+
+html.rtl .dt-container .row > div:last-child {
+    order: 1 !important;
+    margin-right: auto !important;
+}
+
+html.rtl .dt-length {
+    text-align: right !important;
+}
+
+html.rtl .dt-search {
+    text-align: left !important;
+}
+
+html.rtl .dt-search input {
+    margin-left: 10px !important;
+    margin-right: 0 !important;
+}
+
+html.rtl .dt-length select {
+    margin-left: 8px !important;
+    margin-right: 0 !important;
+}

@@ -3,38 +3,61 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- Bootstrap 5 icons CDN-->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
     
     
     <title>Product Management System</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" 
-      href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/icons/bootstrap-icons.css">
 
-<script src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
+    
+<!-- datatable responsive-->
+ <link rel="stylesheet" href="css/bootstrap.min.css">
+ <link rel="stylesheet" href="css/dataTables.bootstrap5.css">
+ <link rel="stylesheet" href="css/responsive.bootstrap5.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    
+
+
+
+
 
  <!-- SweetAlert2 CSS and JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <script src="js/sweetalert2.all.min.js"></script>
 <!-- Toastr CSS and JS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="css/toastr.min.css">
+    <script src="js/toastr.min.js"></script>
+
 
 
 </head>
 <body>
+    
      <div class="container-wrapper">
+        <div class="language-switcher">
+        <!--select name="" id="select_lang">
+            <option value="en" >English</option>
+            <option value="ar" >العربية</option>
+        </select-->
+        <button class="lang-btn active" id="enBtn" onclick="setLanguage('en')">
+            <i class="bi bi-globe"></i>
+            <span id="enText">English</span>
+        </button>
+        <button class="lang-btn" id="arBtn" onclick="setLanguage('ar')">
+            <i class="bi bi-globe"></i>
+            <span id="arText">العربية</span>
+        </button>
+    </div>
         <!-- Header Card -->
         <div class="card">
             <div class="card-header-custom">
                 <h1>
                     <i class="bi bi-box-seam"></i>
-                    Product Management System
+                    <span data-il8n="header">Product Management System</span>
                 </h1>
             </div>
         </div>
@@ -43,7 +66,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="mb-4">
-                    <button class="btn-add-product" data-bs-toggle="modal" data-bs-target="#productForm"><i class="bi bi-plus-circle"></i> New Product</i></button>
+                    <button class="btn-add-product" data-bs-toggle="modal" data-bs-target="#productForm"><i class="bi bi-plus-circle"></i> <span data-il8n="new">New Product</span></i></button>
                 </div>
         
 
@@ -51,14 +74,14 @@
                 
                 <div class="table-container">
                     
-                    <table class="table table-hover" id="storelist"> 
+                    <table class="table table-hover table-striped nowrap" id="storelist"> 
                         <thead>
                             <tr>
-                                <th>Product Code</th>
-                                <th>Product Name</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-                                <th>Actions</th>
+                                <th data-il8n="code">Product Code</th>
+                                <th data-il8n="name">Product Name</th>
+                                <th data-il8n="qty">Qty</th>
+                                <th data-il8n="price">Price</th>
+                                <th data-il8n="actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="data">
@@ -113,7 +136,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="productFormLabel">
-                        <i class="bi bi-box-seam"></i> Product Form
+                        <i class="bi bi-box-seam"></i> <span data-il8n="form">Product Form</span>
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -122,19 +145,21 @@
 
                     <form autocomplete="off" id="myForm" onsubmit="onFormSubmit()">
                             <div class="form-group">
-                                <label for="productCode" class="form-label">Code:</label>
+                                <label for="productCode" class="form-label"><span data-il8n="labelCode">Code</span> *</label>
                                 <input type="text" id="productCode" name="productCode" class="form-control">
-                            </div>
+                                <small id="codeError" class=form-error></small>
+                        
                             <div class="form-group">
-                                <label for="product" class="form-label">Name:</label>
+                                <label for="product" class="form-label"><span data-il8n="labelName">Name</span> *</label>
                                 <input type="text" id="product" name="product" class="form-control">
+                                <small id="productError" class="form-error"></small>
                             </div>
                             <div class="form-group">
-                                <label for="qty" class="form-label">Qty:</label>
+                                <label for="qty" class="form-label"><span data-il8n="labelQty">Qty</span></label>
                                 <input type="number" id="qty" name="qty" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="perPrice" class="form-label">Price:</label>
+                                <label for="perPrice" class="form-label" data-il8n="labelPrice">Price</label>
                                 <input type="number" id="perPrice" name="perPrice" class="form-control">
                             </div>
                           
@@ -145,15 +170,22 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" form="myForm" class="btn-submit-modal"><i class="bi bi-check-circle"></i> Submit</button>
+                    <button type="submit" form="myForm" class="btn-submit-modal"><i class="bi bi-check-circle"></i> <span data-il8n="submit">Submit</span></button>
+                    <button type="button" class="btn-close-modal" data-bs-dismiss="modal"><span data-il8n="close">Close</span></button>
+
                 </div>
             </div>
         </div>  
     </div>    
-        <!-- Option 1: Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+        <!--bootstrap 5 datatable responsive modal-->    
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/dataTables.js"></script>
+        <script src="js/dataTables.bootstrap5.js"></script>
+        <script src="js/dataTables.responsive.js"></script>
+        <script src="js/responsive.bootstrap5.js"></script>
 
-        <script src="script.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="js/script.js" type="module"></script>
     </body>
 </html>
