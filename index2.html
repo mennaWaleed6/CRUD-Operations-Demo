@@ -3,55 +3,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
-    
-    
+        
     <title>Product Management System</title>
     
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="assets/icons/bootstrap-icons.css">
-
     
 <!-- datatable responsive-->
- <link rel="stylesheet" href="css/bootstrap.min.css">
- <link rel="stylesheet" href="css/dataTables.bootstrap5.css">
- <link rel="stylesheet" href="css/responsive.bootstrap5.css">
+ <link rel="stylesheet" href="assets/css/lib/responsive.bootstrap.min.css">
+ <link rel="stylesheet" href="assets/css/lib/dataTables.bootstrap5.css">
+ <link rel="stylesheet" href="assets/css/lib/responsive.bootstrap5.css">
 
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="assets/css/custom/style.css">
+    <script src="assets/js/lib/jquery-3.7.1.min.js"></script>
     
-
-
-
-
-
  <!-- SweetAlert2 CSS and JS -->
-    <link rel="stylesheet" href="css/sweetalert2.min.css">
-    <script src="js/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="assets/css/lib/sweetalert2.min.css">
+    <script src="assets/js/lib/sweetalert2.all.min.js"></script>
 <!-- Toastr CSS and JS -->
-    <link rel="stylesheet" href="css/toastr.min.css">
-    <script src="js/toastr.min.js"></script>
-
-
+    <link rel="stylesheet" href="assets/css/lib/toastr.min.css">
+    <script src="assets/js/lib/toastr.min.js"></script>
 
 </head>
+
 <body>
     
-     <div class="container-wrapper">
-        <div class="language-switcher">
-        <!--select name="" id="select_lang">
-            <option value="en" >English</option>
-            <option value="ar" >العربية</option>
-        </select-->
-        <button class="lang-btn active" id="enBtn" onclick="setLanguage('en')">
-            <i class="bi bi-globe"></i>
-            <span id="enText">English</span>
-        </button>
-        <button class="lang-btn" id="arBtn" onclick="setLanguage('ar')">
-            <i class="bi bi-globe"></i>
-            <span id="arText">العربية</span>
-        </button>
-    </div>
+        <div class="container-wrapper">
+            <div class="language-switcher">
+            <button class="lang-btn active" id="enBtn" onclick="setLanguage('en')">
+                <i class="bi bi-globe"></i>
+                <span id="enText">English</span>
+            </button>
+            <button class="lang-btn" id="arBtn" onclick="setLanguage('ar')">
+                <i class="bi bi-globe"></i>
+                <span id="arText">العربية</span>
+            </button>
+        </div>
+
         <!-- Header Card -->
         <div class="card">
             <div class="card-header-custom">
@@ -69,8 +57,6 @@
                     <button class="btn-add-product" data-bs-toggle="modal" data-bs-target="#productForm"><i class="bi bi-plus-circle"></i> <span data-il8n="new">New Product</span></i></button>
                 </div>
         
-
-                
                 
                 <div class="table-container">
                     
@@ -92,6 +78,7 @@
             <td>$150</td>
             <td>
                 <div class="action-buttons">
+                    <a href="detail.html?code=1" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
                     <button class="btn-edit editBtn"><i class="bi bi-pencil"></i></button>
                     <button class="btn-delete deleteBtn"><i class="bi bi-trash"></i></button>
                 </div>
@@ -104,6 +91,7 @@
                                 <td>$80</td>
                                 <td>
                                     <div class="action-buttons">
+                                            <a href="detail.html?code=2" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
                                             <button class="btn-edit editBtn"><i class="bi bi-pencil"></i></button>
                                             <button class="btn-delete deleteBtn"><i class="bi bi-trash"></i></button>
                                     </div>
@@ -116,6 +104,7 @@
                                 <td>$1200</td>
                                 <td>
                                     <div class="action-buttons">
+                                        <a href="detail.html?code=3" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
                                         <button class="btn-edit editBtn"><i class="bi bi-pencil"></i></button>
                                         <button class="btn-delete deleteBtn"><i class="bi bi-trash"></i></button>
                                     </div> 
@@ -131,7 +120,7 @@
     </div>
 
     <!--Modal Form-->
-    <div class="modal fade" id="productForm" tabindex="-1" aria-labelledby="productFormLabel" aria-hidden="true">
+    <div class="modal fade" id="productForm" tabindex="-1" aria-labelledby="productFormLabel" >
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -143,7 +132,7 @@
 
                 <div class="modal-body">
 
-                    <form autocomplete="off" id="myForm" onsubmit="onFormSubmit()">
+                    <form autocomplete="off" id="myForm" >
                             <div class="form-group">
                                 <label for="productCode" class="form-label"><span data-il8n="labelCode">Code</span> *</label>
                                 <input type="text" id="productCode" name="productCode" class="form-control">
@@ -179,13 +168,13 @@
     </div>    
     
         <!--bootstrap 5 datatable responsive modal-->    
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/dataTables.js"></script>
-        <script src="js/dataTables.bootstrap5.js"></script>
-        <script src="js/dataTables.responsive.js"></script>
-        <script src="js/responsive.bootstrap5.js"></script>
+        <script src="assets/js/lib/responsive.bootstrap.bundle.min.js"></script>
+        <script src="assets/js/lib/dataTables.js"></script>
+        <script src="assets/js/lib/dataTables.bootstrap5.js"></script>
+        <script src="assets/js/lib/dataTables.responsive.js"></script>
+        <script src="assets/js/lib/responsive.bootstrap5.js"></script>
 
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="js/script.js" type="module"></script>
+        <script src="assets/js/lib/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/custom/script.js" type="module"></script>
     </body>
 </html>

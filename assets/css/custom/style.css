@@ -177,6 +177,26 @@
             display: flex;
             gap: 8px;
         }
+
+        .btn-view {
+            background: linear-gradient(135deg, #179deb 0%, #1871b6 100%);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 18px;
+        }
+        
+        .btn-view:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(128, 102, 234, 0.4);
+        }
         
         .btn-edit {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -300,6 +320,18 @@
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
         
+        .detail-value {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 14px;
+            background-color: #f8f9fa;
+            color: #333;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+        
         .modal-footer {
             background: #f8f9fa;
             border-top: 1px solid #dee2e6;
@@ -408,7 +440,7 @@
                 padding: 20px;
             }
             
-            .btn-edit, .btn-delete {
+            .btn-view, .btn-edit, .btn-delete {
                 width: 36px;
                 height: 36px;
                 font-size: 16px;
@@ -425,61 +457,3 @@
                 font-size: 12px;
             }
         }
-/* ═══════════════════════════════════════════════════════════════════ */
-/* DATATABLE 2.3.5 + BOOTSTRAP 5 RTL/LTR                               */
-/* ═══════════════════════════════════════════════════════════════════ */
-
-html.ltr .dt-container .row {
-    flex-direction: row !important;
-    justify-content: space-between !important;
-}
-
-html.ltr .dt-container .row > div:first-child {
-    order: 1 !important;
-}
-
-html.ltr .dt-container .row > div:last-child {
-    order: 2 !important;
-    margin-left: auto !important;
-}
-
-html.ltr .dt-length {
-    text-align: left !important;
-}
-
-html.ltr .dt-search {
-    text-align: right !important;
-}
-
-/* RTL */
-html.rtl .dt-container .row {
-    flex-direction: row-reverse !important;
-    justify-content: space-between !important;
-}
-
-html.rtl .dt-container .row > div:first-child {
-    order: 2 !important;
-}
-
-html.rtl .dt-container .row > div:last-child {
-    order: 1 !important;
-    margin-right: auto !important;
-}
-
-html.rtl .dt-length {
-    text-align: right !important;
-}
-
-html.rtl .dt-search {
-    text-align: left !important;
-}
-
-html.rtl .dt-search input {
-    margin-left: 10px !important;
-    margin-right: 0 !important;
-}
-
-html.rtl .dt-length select {
-    margin-left: 8px !important;
-    margin-right: 0 !important;
-}

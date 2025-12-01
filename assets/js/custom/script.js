@@ -6,18 +6,62 @@ var table;
 var productModal;
 var currentLanguage = 'en';
 
+function loadProductsFromStorage() {
+    // Clear existing table data
+    table.clear();
+    
+    // Load all products from localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('product_')) {
+            const product = JSON.parse(localStorage.getItem(key));
+            const id = key.replace('product_', '');
+            
+            table.row.add([
+                product.code,
+                product.name,
+                product.qty,
+                '$' + product.price,
+                `<div class="action-buttons">
+                    <a href="detail.html?code=${encodeURIComponent(id)}" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
+                    <button class='btn-edit editBtn' title='Edit'><i class="bi bi-pencil"></i></button>
+                    <button class='btn-delete deleteBtn' title='Delete'><i class="bi bi-trash"></i></button>
+                 </div>`
+            ]);
+        }
+    }
+    table.draw();
+}
 
-/*const languageSelector= document.querySelector("select");
+const getCookie = (name) => {
+    const nameEQ = name + "=";
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.indexOf(nameEQ) === 0) {
+            return cookie.substring(nameEQ.length);
+        }
+    }
+    return null;
+};
 
-languageSelector.addEventListener("change", (event)=>{
-    setLanguage(event.target.value);
-    localStorage.setItem("lang", event.target.value);
-});*/
+let productIdCounter = parseInt("0");
 
-
+const generateUniqueId = () => {
+    productIdCounter++;
+    document.cookie ='productIdCounter='+ productIdCounter.toString() + '; max-age=' + 60*60*24*30;
+    return productIdCounter.toString();
+};
 
 document.addEventListener("DOMContentLoaded",()=>{
-    const language = localStorage.getItem("lang") || "en";
+    const language = getCookie("lang") || "en";
+    
+    const savedCounter = getCookie("productIdCounter");
+    if (savedCounter) {
+        productIdCounter = parseInt(savedCounter);
+    }
+    
+
     setLanguage(language );
 });
 
@@ -45,17 +89,12 @@ const setLanguage =(language) => {
             
             language: dataTablesLanguage[language],
             autowidth: false,
-            responsive: true,
-            layout: {
-                topStart: 'pageLength',      // ← Show X entries
-                topEnd: 'search',             // ← Search box
-                bottomStart: 'info',
-                bottomEnd: 'paging'
-            }
+            responsive: true
+            
         });
     };
     
-    localStorage.setItem("lang", language);
+    document.cookie = 'lang='+language + '; max-age=' + 60*60*24*30;
 };
 
 window.setLanguage = setLanguage;
@@ -97,12 +136,24 @@ toastr.options = {
 
 
 $(document).ready(function () {
+    
     table =$('#storelist').DataTable({
         language: dataTablesLanguage[currentLanguage],
         autowidth: false,
         responsive: true
     });
 
+    if(localStorage.length===0){
+        const sampleProducts = [
+            {id: generateUniqueId(), code: '001', name: 'Keyboard', qty: '5', price: '150' },
+            {id: generateUniqueId(), code: '002', name: 'Mouse', qty: '10', price: '80' },
+            {id: generateUniqueId(), code: '003', name: 'Monitor', qty: '2', price: '1200' }
+        ];
+
+        sampleProducts.forEach(product => {
+            localStorage.setItem(`product_${product.id}`, JSON.stringify(product));
+        });}
+    loadProductsFromStorage();
     productModal = new bootstrap.Modal(document.getElementById('productForm'),{
         
         backdrop: 'static',
@@ -178,13 +229,23 @@ function readFormData() {
 
 // Insert data
 function insertNewRecord(data) {
-    
+     const uniqueId = generateUniqueId();
+
+     localStorage.setItem(`product_${uniqueId}`, JSON.stringify({
+        id: uniqueId,
+        code: data.productCode,
+        name: data.product,
+        qty: data.qty,
+        price: data.perPrice
+    }));
+
      table.row.add([
         data.productCode,
         data.product,
         data.qty,
         '$'+data.perPrice,
         `<div class="action-buttons">
+            <a href="detail.html?code=${encodeURIComponent(uniqueId)}" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
             <button class='btn-edit editBtn' title='Edit'><i class="bi bi-pencil"></i></button>
             <button class='btn-delete deleteBtn' title='Delete'><i class="bi bi-trash"></i></button>
          </div>`
@@ -213,6 +274,24 @@ function updateRecord(formData) {
     cells.eq(2).text(formData.qty);
     cells.eq(3).text('$' + formData.perPrice);
 
+    var row = selectedRow;
+    var actionCell = row.find("td").eq(4).html();
+    var codeMatch = actionCell.match(/code=([^"]+)/);
+    
+    if (codeMatch) {
+        const productId = decodeURIComponent(codeMatch[1]);
+        const storageKey = `product_${productId}`;
+        
+        // Update localStorage with new data
+        localStorage.setItem(storageKey, JSON.stringify({
+            id: productId,
+            code: formData.productCode,
+            name: formData.product,
+            qty: formData.qty,
+            price: formData.perPrice
+        }));
+    }
+
     selectedRow = null;
 }
 
@@ -224,13 +303,22 @@ function onDelete(button) {
         text: lang.deleteConfirmtext,
         icon: 'warning',
         showCancelButton: true,
-        //confirmButtonColor: '#667eea' ,
         cancelButtonColor: '#f5576c',
         confirmButtonText: lang.deleteConfirmButtonText,
         cancelButtonText: lang.deleteCancelButtonText
     }).then((result) => {
         if (result.isConfirmed) {
             var row = $(button).closest("tr");
+
+            var actionCell = row.find("td").eq(4).html();
+            var codeMatch = actionCell.match(/code=([^"]+)/);
+            
+            if (codeMatch) {
+                const productId = decodeURIComponent(codeMatch[1]);
+                const storageKey = `product_${productId}`;
+                localStorage.removeItem(storageKey);
+            }
+
             table.row(row).remove().draw();
             
             Swal.fire({
@@ -252,3 +340,5 @@ function resetForm() {
 
     selectedRow = null;
 }
+
+
