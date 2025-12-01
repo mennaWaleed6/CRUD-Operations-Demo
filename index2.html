@@ -30,15 +30,15 @@
     
         <div class="container-wrapper">
             <div class="language-switcher">
-            <button class="lang-btn active" id="enBtn" onclick="setLanguage('en')">
-                <i class="bi bi-globe"></i>
-                <span id="enText">English</span>
-            </button>
-            <button class="lang-btn" id="arBtn" onclick="setLanguage('ar')">
-                <i class="bi bi-globe"></i>
-                <span id="arText">العربية</span>
-            </button>
-        </div>
+                <button class="lang-btn active" id="enBtn" onclick="setLanguage('en')">
+                    <i class="bi bi-globe"></i>
+                    <span id="enText">English</span>
+                </button>
+                <button class="lang-btn" id="arBtn" onclick="setLanguage('ar')">
+                    <i class="bi bi-globe"></i>
+                    <span id="arText">العربية</span>
+                </button>
+            </div>
 
         <!-- Header Card -->
         <div class="card">
@@ -78,7 +78,7 @@
             <td>$150</td>
             <td>
                 <div class="action-buttons">
-                    <a href="detail.html?code=1" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
+                    <a href="details.html?code=1" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
                     <button class="btn-edit editBtn"><i class="bi bi-pencil"></i></button>
                     <button class="btn-delete deleteBtn"><i class="bi bi-trash"></i></button>
                 </div>
@@ -124,11 +124,26 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="productFormLabel">
-                        <i class="bi bi-box-seam"></i> <span data-il8n="form">Product Form</span>
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                    <div class="modal-header-left">
+                        <h5 class="modal-title" id="productFormLabel">
+                            <i class="bi bi-box-seam"></i> <span data-il8n="form">Product Form</span>
+                        </h5>
+                    </div>
+
+                    <div class="modal-header-right">        
+                        <div class="lang-switcher">
+                            <button class="language-btn " id="enbtn" onclick="setLanguage('en')" type="button">
+                                <i class="bi bi-globe"></i>
+                                <span id="enText">EN</span>
+                            </button>
+                            <button class="language-btn" id="arbtn" onclick="setLanguage('ar')" type="button">
+                                <i class="bi bi-globe"></i>
+                                <span id="arText">AR</span>
+                            </button>
+                        </div>    
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>    
+                </div>    
 
                 <div class="modal-body">
 
@@ -137,6 +152,7 @@
                                 <label for="productCode" class="form-label"><span data-il8n="labelCode">Code</span> *</label>
                                 <input type="text" id="productCode" name="productCode" class="form-control">
                                 <small id="codeError" class=form-error></small>
+                            </div>    
                         
                             <div class="form-group">
                                 <label for="product" class="form-label"><span data-il8n="labelName">Name</span> *</label>

@@ -36,5 +36,6 @@ function loadProductDetails(code) {
 
 function goBack() {
      window.location.href = 'index2.html';
+    
     //window.history.back();
 }

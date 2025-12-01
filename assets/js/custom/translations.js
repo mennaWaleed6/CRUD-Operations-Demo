@@ -16,6 +16,8 @@ const translations = {
         labelPrice: "Price",
         codeRequired: "Product Code is required.",
         nameRequired: "Product Name is required.",
+        detailsTitle: "Product Details",
+        backButton: "Back",
 
         deleteConfirmTitle: "Are you sure?",
         deleteConfirmText: "You won't be able to revert this!",
@@ -26,7 +28,13 @@ const translations = {
         deleteConfirmButton: "OK",
 
         addedSuccessfully: "Product added successfully!",
-        updatedSuccessfully: "Product updated successfully!"
+        updatedSuccessfully: "Product updated successfully!",
+
+        stockQty: "Quantity in Stock",
+        unitPrice: "Unit Price",
+        backProducts: "Back to Products",
+        products: "Products",
+        home: "Home"
     },
     ar: {
         code: "كود المنتج",
@@ -40,11 +48,13 @@ const translations = {
         submit: "إرسال",
         close: "إغلاق",
         labelCode: "كود المنتج",
-        labelName: "الاسم",
+        labelName: "اسم المنتج",
         labelQty: "الكمية",
         labelPrice: "السعر",
         codeRequired: "كود المنتج مطلوب.",
         nameRequired: "اسم المنتج مطلوب.",
+        detailsTitle: "تفاصيل المنتج",
+        backButton: "رجوع",
 
         deleteConfirmTitle: "هل أنت متأكد؟",
         deleteConfirmText: "لن تتمكن من التراجع عن هذا!",
@@ -55,7 +65,13 @@ const translations = {
         deleteConfirmButton: "حسناً",
 
         addedSuccessfully: "تم إضافة المنتج بنجاح!",
-        updatedSuccessfully: "تم تحديث المنتج بنجاح!"
+        updatedSuccessfully: "تم تحديث المنتج بنجاح!",
+
+        stockQty: "الكمية المتوفرة",
+        unitPrice: "سعر الوحدة",
+        backProducts: "العودة إلى المنتجات",
+        products: "المنتجات",
+        home: "الصفحة الرئيسية"
 
     }
 };

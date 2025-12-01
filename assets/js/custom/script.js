@@ -23,7 +23,7 @@ function loadProductsFromStorage() {
                 product.qty,
                 '$' + product.price,
                 `<div class="action-buttons">
-                    <a href="detail.html?code=${encodeURIComponent(id)}" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
+                    <a href="details.html?code=${encodeURIComponent(id)}" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
                     <button class='btn-edit editBtn' title='Edit'><i class="bi bi-pencil"></i></button>
                     <button class='btn-delete deleteBtn' title='Delete'><i class="bi bi-trash"></i></button>
                  </div>`
@@ -44,6 +44,7 @@ const getCookie = (name) => {
     }
     return null;
 };
+
 
 let productIdCounter = parseInt("0");
 
@@ -76,13 +77,26 @@ const setLanguage =(language) => {
 
     document.dir = language ==='ar' ? 'rtl' : 'ltr';
 
+    updateLanguageButtons(language);
+    if(window.location.pathname.includes('index2.html')){
+        updateToastrlanguage(language);
+        updateTableLanguage(language);    
+
+   }
+    document.cookie = 'lang='+language + '; max-age=' + 60*60*24*30;
+};
+
+window.setLanguage = setLanguage;
+window.getCookie = getCookie;
+
+const updateToastrlanguage = (language) => {
     toastr.options.positionClass = language === 'ar' 
         ? "toast-top-left" 
         : "toast-top-right";
-    
-    updateLanguageButtons(language);
+};
 
-    if (table) {
+const updateTableLanguage = (language) => {
+        if (table) {
 
         table.destroy(false);
         table = $('#storelist').DataTable({
@@ -93,28 +107,32 @@ const setLanguage =(language) => {
             
         });
     };
-    
-    document.cookie = 'lang='+language + '; max-age=' + 60*60*24*30;
 };
-
-window.setLanguage = setLanguage;
-
 const updateLanguageButtons = (language) => {
     const enBtn = document.getElementById('enBtn');
     const arBtn = document.getElementById('arBtn');
+    //  form buttons
+    /*const enbtn = document.getElementById('enbtn');
+    const arbtn = document.getElementById('arbtn');*/
 
 
     // Remove active from both buttons
     enBtn.classList.remove('active');
     arBtn.classList.remove('active');
+    /*enbtn.classList.remove('active');
+    arbtn.classList.remove('active');*/
 
     // Add active to selected button
     if (language === 'en') {
         enBtn.classList.add('active');
+       // enbtn.classList.add('active');
     } else {
         arBtn.classList.add('active');
+       // arbtn.classList.add('active');
     }
 };
+
+window.updateLanguageButtons = updateLanguageButtons;
 
 toastr.options = {
     "closeButton": true,

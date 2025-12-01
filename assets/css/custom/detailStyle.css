@@ -8,8 +8,65 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding:40px 20px;
         }
+
+                .language-switcher {
+            position: relative;
+            top: auto;
+            right: auto;
+            left: auto;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+        .language-switcher select {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-switcher select:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .language-switcher select option {
+            background: #667eea;
+            color: white;
+        }
+        .lang-btn {
+            padding: 10px 18px;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+         .lang-btn i {
+            margin-right: 5px;
+        }
+        
 
         .container {
             max-width: 900px;
@@ -222,4 +279,34 @@
                 width: 100%;
             }
         }
-   
+ 
+.breadcrumbs {
+    
+    font-size: 14px;
+    opacity: 0.9;
+}   
+
+.breadcrumbs__item{
+    display: inline-block;
+}
+
+.breadcrumbs__item:not(:last-of-type)::after{
+    content :'\203a';
+    margin: 0 5px;
+    color: #cccccc
+}
+
+.breadcrumbs__link{
+    text-decoration: none;
+    color: #999999
+}
+
+.breadcrumbs__link:hover{
+    text-decoration: underline;
+
+}
+
+.breadcrumbs__link--active{
+    color: whitesmoke;
+    font-weight: 500;
+}

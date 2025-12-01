@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="assets/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/custom/detailStyle.css">
+    <title>product details!</title>
+  </head>
+  <body>
+            <div class="language-switcher">
+            <button class="lang-btn active" id="enBtn" onclick="setLanguage('en')">
+                <i class="bi bi-globe"></i>
+                <span id="enText">English</span>
+            </button>
+            <button class="lang-btn" id="arBtn" onclick="setLanguage('ar')">
+                <i class="bi bi-globe"></i>
+                <span id="arText">العربية</span>
+            </button>
+        </div>
+      <div class="container">
+        
+        <!-- Header -->
+        <div class="header">
+            <div>
+                <h1>
+                    <i class="bi bi-box-seam"></i>
+                    <span data-il8n="detailsTitle">Product Details</span>
+                </h1>
+                <ul class="breadcrumbs">
+                    <li class="breadcrumbs__item">
+                        <a href="index2.html" class="breadcrumbs__link">
+                            
+                            <span data-il8n="home">Home</span>
+                        </a>
+                    </li>
+                    
+                    <li class="breadcrumbs__item">
+                        <a href="index2.html" class="breadcrumbs__link">
+                            
+                            <span data-il8n="products">Products</span>
+                        </a>
+                    </li>
+                    <li class="breadcrumbs__item">
+                        <a href="" class="breadcrumbs__link breadcrumbs__link--active">
+                            
+                            <span data-il8n="detailsTitle">Product Details</span>
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Product Card -->
+        <div class="product-card">
+            <!-- Product Header -->
+            <div class="product-header">
+                <!--div class="product-code" id="productCode">
+                    <span class="skeleton" style="width: 100px; display: inline-block;"></span>
+                </div-->
+                <h2 id="product">
+                    <span class="skeleton" style="width: 200px; display: inline-block;"></span>
+                </h2>
+            </div>
+
+            <!-- Product Content -->
+            <div class="product-content">
+                <div class="details-grid">
+                    <!-- Code -->
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <i class="bi bi-tag"></i> <span data-il8n="code">Product Code</span>
+                        </div>
+                        <div class="detail-value" id="productCode">
+                            <span class="skeleton"></span>
+                        </div>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="detail-item qty-item">
+                        <div class="detail-label">
+                            <i class="bi bi-box"></i> <span data-il8n="stockQty">Quantity in Stock</span>
+                        </div>
+                        <div class="detail-value" id="qty">
+                            <span class="skeleton"></span>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="detail-item price-item">
+                        <div class="detail-label">
+                            <i class="bi bi-currency-dollar"></i> <span data-il8n="unitPrice">Unit Price</span>
+                        </div>
+                        <div class="detail-value" id="perPrice">
+                            <span class="skeleton"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="goBack()">
+                        <i class="bi bi-arrow-left"></i>
+                        <span data-il8n="backProducts">Back to Products</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="assets/js/lib/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/custom/details.js"></script>
+    <script src="assets/js/custom/script.js" type="module"></script>
+    
+  </body>
+</html>
