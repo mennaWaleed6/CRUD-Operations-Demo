@@ -545,4 +545,11 @@
                 font-size: 20px;
             }
         }
+        .dt-button{
+            padding:0.25rem 1rem !important;
+            background:darkgray !important;
+            border: none !important;
+            border-radius:0.5rem !important;
+            font-weight: 700 !important;
+        }
 

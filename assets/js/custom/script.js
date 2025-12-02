@@ -100,7 +100,20 @@ const updateTableLanguage = (language) => {
 
         table.destroy(false);
         table = $('#storelist').DataTable({
-            
+            layout:{
+            topStart:{
+                buttons:[
+            {extend:'excel',
+                exportOptions:{
+                    columns:[0,1,2,3]
+                },
+                filename: 'Employee',
+                title:''
+            }
+        ]
+            }
+        }
+        ,
             language: dataTablesLanguage[language],
             autowidth: false,
             responsive: true
@@ -156,6 +169,20 @@ toastr.options = {
 $(document).ready(function () {
     
     table =$('#storelist').DataTable({
+        layout:{
+            topStart:{
+                buttons:[
+            {extend:'excel',
+                exportOptions:{
+                    columns:[0,1,2,3]
+                },
+                filename: 'Employee',
+                title:''
+            }
+        ]
+            }
+        }
+        ,
         language: dataTablesLanguage[currentLanguage],
         autowidth: false,
         responsive: true
