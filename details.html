@@ -13,6 +13,8 @@
     <title>product details!</title>
   </head>
   <body>
+            <!--nav class="navbar">   
+            </nav-->
             <div class="language-switcher">
             <button class="lang-btn active" id="enBtn" onclick="setLanguage('en')">
                 <i class="bi bi-globe"></i>
@@ -34,7 +36,7 @@
                 </h1>
                 <ul class="breadcrumbs">
                     <li class="breadcrumbs__item">
-                        <a href="index2.html" class="breadcrumbs__link">
+                        <a href="home.html" class="breadcrumbs__link">
                             
                             <span data-il8n="home">Home</span>
                         </a>
@@ -101,6 +103,15 @@
                             <span class="skeleton"></span>
                         </div>
                     </div>
+
+                    <div class="detail-item description-item">
+                        <div class="detail-label">
+                            <i class="bi bi-file-text"></i> <span data-il8n="description">Description</span>
+                        </div>
+                        <div class="detail-value description-value" id="description">
+                            <span class="skeleton"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Actions -->
@@ -114,10 +125,13 @@
         </div>
     </div>
 
-
+    <div class="footer">
+    </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="assets/js/lib/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/custom/layout.js" type="module"></script>
+    <script src="assets/js/custom/nav.js"></script>
     <script src="assets/js/custom/details.js"></script>
     <script src="assets/js/custom/script.js" type="module"></script>
     

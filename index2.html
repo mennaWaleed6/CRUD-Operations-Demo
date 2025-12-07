@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         
     <title>Product Management System</title>
@@ -27,162 +29,128 @@
 </head>
 
 <body>
+        <nav class="navbar">   
+        </nav>
     
         <div class="container-wrapper">
             <div class="language-switcher">
-                <button class="lang-btn active" id="enBtn" onclick="setLanguage('en')">
-                    <i class="bi bi-globe"></i>
-                    <span id="enText">English</span>
-                </button>
-                <button class="lang-btn" id="arBtn" onclick="setLanguage('ar')">
-                    <i class="bi bi-globe"></i>
-                    <span id="arText">العربية</span>
-                </button>
             </div>
 
-        <!-- Header Card -->
-        <div class="card">
-            <div class="card-header-custom">
-                <h1>
-                    <i class="bi bi-box-seam"></i>
-                    <span data-il8n="header">Product Management System</span>
-                </h1>
+            <!-- Header Card -->
+            <div class="card">
+                <!--div class="card-header-custom">
+                    <h1>
+                        <i class="bi bi-box-seam"></i>
+                        <span data-il8n="header">Product Management System</span>
+                    </h1>
+                </div-->
             </div>
-        </div>
-        
-        <!-- Main Card -->
-        <div class="card">
-            <div class="card-body">
-                <div class="mb-4">
-                    <button class="btn-add-product" data-bs-toggle="modal" data-bs-target="#productForm"><i class="bi bi-plus-circle"></i> <span data-il8n="new">New Product</span></i></button>
-                </div>
-        
-                
-                <div class="table-container">
-                    
-                    <table class="table table-hover table-striped nowrap" id="storelist"> 
-                        <thead>
-                            <tr>
-                                <th data-il8n="code">Product Code</th>
-                                <th data-il8n="name">Product Name</th>
-                                <th data-il8n="qty">Qty</th>
-                                <th data-il8n="price">Price</th>
-                                <th data-il8n="actions">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="data">
-                            <tr>
-            <td>001</td>
-            <td>Keyboard</td>
-            <td>5</td>
-            <td>$150</td>
-            <td>
-                <div class="action-buttons">
-                    <a href="details.html?code=1" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
-                    <button class="btn-edit editBtn"><i class="bi bi-pencil"></i></button>
-                    <button class="btn-delete deleteBtn"><i class="bi bi-trash"></i></button>
-                </div>
-            </td>
-                            </tr>
-                            <tr>
-                                <td>002</td>
-                                <td>Mouse</td>
-                                <td>10</td>
-                                <td>$80</td>
-                                <td>
-                                    <div class="action-buttons">
-                                            <a href="detail.html?code=2" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
-                                            <button class="btn-edit editBtn"><i class="bi bi-pencil"></i></button>
-                                            <button class="btn-delete deleteBtn"><i class="bi bi-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>003</td>
-                                <td>Monitor</td>
-                                <td>2</td>
-                                <td>$1200</td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <a href="detail.html?code=3" class="btn btn-view viewBtn"><i class="bi bi-eye"></i></a>
-                                        <button class="btn-edit editBtn"><i class="bi bi-pencil"></i></button>
-                                        <button class="btn-delete deleteBtn"><i class="bi bi-trash"></i></button>
-                                    </div> 
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                
             
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--Modal Form-->
-    <div class="modal fade" id="productForm" tabindex="-1" aria-labelledby="productFormLabel" >
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="modal-header-left">
-                        <h5 class="modal-title" id="productFormLabel">
-                            <i class="bi bi-box-seam"></i> <span data-il8n="form">Product Form</span>
-                        </h5>
+            <!-- Main Card -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-4">
+                        <!--button class="btn-add-product" data-bs-toggle="modal" data-bs-target="#productForm"><i class="bi bi-plus-circle"></i> <span data-il8n="new">New Product</span></i></button-->
+                        <button type="button" id="newProductBtn" class="btn btn-add-product">
+                            <i class="bi bi-plus-circle"></i> <span data-il8n="new">New Product</span>
+                        </button>
                     </div>
-
-                    <div class="modal-header-right">        
-                        <div class="lang-switcher">
-                            <button class="language-btn " id="enbtn" onclick="setLanguage('en')" type="button">
-                                <i class="bi bi-globe"></i>
-                                <span id="enText">EN</span>
-                            </button>
-                            <button class="language-btn" id="arbtn" onclick="setLanguage('ar')" type="button">
-                                <i class="bi bi-globe"></i>
-                                <span id="arText">AR</span>
-                            </button>
-                        </div>    
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>    
-                </div>    
-
-                <div class="modal-body">
-
-                    <form autocomplete="off" id="myForm" >
-                            <div class="form-group">
-                                <label for="productCode" class="form-label"><span data-il8n="labelCode">Code</span> *</label>
-                                <input type="text" id="productCode" name="productCode" class="form-control">
-                                <small id="codeError" class=form-error></small>
-                            </div>    
+            
+                    
+                    <div class="table-container">
                         
-                            <div class="form-group">
-                                <label for="product" class="form-label"><span data-il8n="labelName">Name</span> *</label>
-                                <input type="text" id="product" name="product" class="form-control">
-                                <small id="productError" class="form-error"></small>
-                            </div>
-                            <div class="form-group">
-                                <label for="qty" class="form-label"><span data-il8n="labelQty">Qty</span></label>
-                                <input type="number" id="qty" name="qty" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="perPrice" class="form-label" data-il8n="labelPrice">Price</label>
-                                <input type="number" id="perPrice" name="perPrice" class="form-control">
-                            </div>
-                          
-                    </form>
-
-
-    
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" form="myForm" class="btn-submit-modal"><i class="bi bi-check-circle"></i> <span data-il8n="submit">Submit</span></button>
-                    <button type="button" class="btn-close-modal" data-bs-dismiss="modal"><span data-il8n="close">Close</span></button>
-
+                        <table class="table table-hover table-striped nowrap" id="storelist"> 
+                            <thead>
+                                <tr>
+                                    <th data-il8n="code">Product Code</th>
+                                    <th data-il8n="name">Product Name</th>
+                                    <th data-il8n="qty">Qty</th>
+                                    <th data-il8n="price">Price</th>
+                                    <th data-il8n="description">Description</th>
+                                    <th data-il8n="actions">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data">
+                            </tbody>
+                        </table>
+                    
+                
+                    </div>
                 </div>
             </div>
-        </div>  
-    </div>    
     
+
+            <!--Modal Form-->
+            <div class="modal fade" id="productForm" tabindex="-1" aria-labelledby="productFormLabel">
+                <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-header-left">
+                                <h2 class="modal-title" id="productFormLabel">
+                                    <i class="bi bi-box-seam"></i> <span data-il8n="form">Product Form</span>
+                                </h2>
+                            </div>
+
+                            
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
+                        </div>    
+
+                        <div class="modal-body">
+
+                            <form autocomplete="off" id="myForm" >
+                                    <div class="form-group">
+                                        <label for="productCode" class="form-label">
+                                            <span data-il8n="labelCode">Code</span>
+                                            <span>*</span></label>
+                                        <input type="text" id="productCode" name="productCode" class="form-control">
+                                        <small id="codeError" class=form-error></small>
+                                    </div>    
+                                
+                                    <div class="form-group">
+                                        <label for="product" class="form-label"><span data-il8n="labelName">Name</span> *</label>
+                                        <input type="text" id="product" name="product" class="form-control">
+                                        <small id="productError" class="form-error"></small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="qty" class="form-label"><span data-il8n="labelQty">Qty</span></label>
+                                        <input type="number" id="qty" name="qty" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="perPrice" class="form-label" data-il8n="labelPrice">Price</label>
+                                        <input type="number" id="perPrice" name="perPrice" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description" class="form-label" data-il8n="description">Description</label>
+                                        <!--input type="text" id="description" name="description" class="form-control" rows="3"-->
+                                        <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+                                    </div>
+
+
+
+                                    
+                                
+                            </form>
+
+
+            
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" form="myForm" class="btn-submit-modal"><i class="bi bi-check-circle"></i> <span data-il8n="submit">Submit</span></button>
+                            <button type="button" class="btn-close-modal" data-bs-dismiss="modal"><span data-il8n="close">Close</span></button>
+
+                        </div>
+                    </div>
+                </div>  
+            </div>    
+        </div>    
+
+    <footer class="footer">
+    </footer>
+    
+        
+        <script src="assets/js/custom/layout.js" type="module"></script>
         <!--bootstrap 5 datatable responsive modal-->    
         <script src="assets/js/lib/responsive.bootstrap.bundle.min.js"></script>
         <script src="assets/js/lib/dataTables.js"></script>
@@ -198,8 +166,10 @@
         <script src="assets/js/lib/dataTables.bootstrap5.js"></script>
         <script src="assets/js/lib/dataTables.responsive.js"></script>
         <script src="assets/js/lib/responsive.bootstrap5.js"></script>
+        <script src="assets/npm/xlsx/dist/xlsx.full.min.js"></script>
 
         <script src="assets/js/lib/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/custom/nav.js"></script>
         <script src="assets/js/custom/script.js" type="module"></script>
     </body>
 </html>

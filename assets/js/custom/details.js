@@ -27,6 +27,7 @@ function loadProductDetails(code) {
         document.getElementById('product').textContent = productData.name ;
         document.getElementById('qty').textContent = productData.qty ;
         document.getElementById('perPrice').textContent = productData.price;
+        document.getElementById('description').textContent = productData.description;
     } else {
         alert(`Product with code ${code} not found in localStorage`);
         window.history.back();

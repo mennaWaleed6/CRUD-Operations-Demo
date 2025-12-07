@@ -1,0 +1,6 @@
+1- removed translate button in modal form
+2- making design responsive to mobile view port
+3- fixed issue of not opening new product form after submitting one 
+4- adding hidden column(description) and displaying it in excel
+5- hiding product Code column from displaying in excel
+6- adding navbar and footer for pages

@@ -4,6 +4,7 @@ const translations = {
         name: "Product Name",
         qty: "Qty",
         price: "Price",
+        description: "Description",
         actions: "Actions",
         header: "Product Management System",
         new: "New Product",
@@ -34,7 +35,11 @@ const translations = {
         unitPrice: "Unit Price",
         backProducts: "Back to Products",
         products: "Products",
-        home: "Home"
+        home: "Home",
+
+        footerText: "Product Management System. All rights reserved.",
+        welcoming: "Welcome to the Product Management System!",
+        paragraph: "Track products, edit details, and export data in one place. Create entries, update stock and pricing, switch languages, and view item details without leaving the dashboard."
     },
     ar: {
         code: "كود المنتج",
@@ -42,6 +47,7 @@ const translations = {
         name: "اسم المنتج",
         qty: "الكمية",
         price: "السعر",
+        description: "الوصف",
         header: "نظام إدارة المنتجات",
         new: "منتج جديد",
         form: "نموذج المنتج",
@@ -71,7 +77,11 @@ const translations = {
         unitPrice: "سعر الوحدة",
         backProducts: "العودة إلى المنتجات",
         products: "المنتجات",
-        home: "الصفحة الرئيسية"
+        home: "الصفحة الرئيسية",
+
+        footerText: "نظام إدارة المنتجات. جميع الحقوق محفوظة.",
+        welcoming: "مرحبًا بك في نظام إدارة المنتجات!",
+        paragraph: "تتبع المنتجات، وتحرير التفاصيل، وتصدير البيانات في مكان واحد. قم بإنشاء إدخالات، وتحديث المخزون والتسعير، وتبديل اللغات، وعرض تفاصيل العناصر دون مغادرة لوحة المعلومات."
 
     }
 };
@@ -89,8 +99,8 @@ const dataTablesLanguage = {
         "search": "Search:",
         "zeroRecords": "No matching records found",
         "paginate": {
-           // "first": "First",
-            //"last": "Last",
+           "first": "First",
+            "last": "Last",
             "next": "Next",
             "previous": "Previous"
         },
@@ -111,8 +121,8 @@ const dataTablesLanguage = {
         "search": "ابحث:",
         "zeroRecords": "لم يعثر على أية سجلات",
         "paginate": {
-           // "first": "الأول",
-           // "last": "الأخير",
+            "first": "الأول",
+            "last": "الأخير",
             "next": "التالي",
             "previous": "السابق"
         },
