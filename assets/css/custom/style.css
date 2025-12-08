@@ -15,12 +15,10 @@
         
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
             min-height: 100dvh  ;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 40px 20px;
-
-            overflow-y: auto;
+             overflow-y: auto;
             overflow-x: hidden;
         }
 
@@ -31,35 +29,7 @@
             padding: 0 15px;
         }
 
-        .language-switcher {
-            /*position: relative;*/
-            z-index: 100;
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: flex-end;
-            flex-wrap: wrap;
-            display: none;;
-        }
-        .language-switcher select {
-            padding: 10px 20px;
-            border-radius: 25px;
-            border: 2px solid white;
-            background: rgba(255, 255, 255, 0.3);
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .language-switcher select:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        .language-switcher select option {
-            background: #667eea;
-            color: white;
-        }
+        
         .lang-btn {
             padding: 10px 18px;
             border: 2px solid white;
@@ -168,12 +138,6 @@
             min-width: 600px;
         }
 
-        html.rtl table.dataTable,
-        html.rtl .dataTables_wrapper,
-        html.ltr table.dataTable,
-        html.ltr .dataTables_wrapper {
-            width: 100% !important;
-        }
 
         table.dataTable thead th {
             background: #f8f9fa;
@@ -205,9 +169,6 @@
             background-color: #ffffff;
         }
 
-        table.dataTable tbody td:nth-child(2) {
-            text-align: left;
-        }
         
         .action-buttons {
             display: flex;
@@ -327,13 +288,6 @@
         .btn-close:hover {
             opacity: 1;
         }
-        /* RTL Arabic */
-        html[dir="rtl"] .btn-close {
-            right: auto !important;
-            left: 0 !important;
-            float: none !important;
-        }
-
 
         
         .modal-body {
@@ -476,25 +430,12 @@
         }
 
 
-        html.rtl .dataTables_wrapper .dataTables_length { float: right; text-align: right;}
-        html.rtl .dataTables_wrapper .dataTables_filter { float: left; }
-        html.rtl .dataTables_wrapper .dataTables_filter label { flex-direction: row-reverse; }
-        html.rtl .dataTables_wrapper .dataTables_length label { flex-direction: row-reverse; }
-        html.rtl .dataTables_wrapper .dataTables_filter input { margin-left: 10px !important; }
-        html.rtl .dataTables_wrapper .dataTables_length select { margin-left: 8px !important; }
-        /*.dataTables_wrapper::after { clear: both; }
-        
         /* Responsive Design */
         @media (max-width: 768px) {
             body {
                 padding: 20px 10px;
             }
 
-            .language-switcher {
-                top: 10px;
-                right: 10px;
-            }
-            
             .card-header-custom {
                 padding: 20px;
             }
@@ -523,6 +464,20 @@
                 padding: 12px 8px !important;
                 font-size: 12px;
             }
+
+            html[dir="rtl"] .dataTables_filter {
+                float: left !important;
+            }
+
+            html[dir="rtl"] .dataTables_length {
+                float: right !important;
+            }
+
+            html[dir="rtl"] table.dataTable th,
+            html[dir="rtl"] table.dataTable td {
+                text-align: right !important;
+            }
+
 
              .lang-btn {
                 padding: 8px 14px;
@@ -588,10 +543,6 @@
                 max-width: 100% !important;
                 margin: 10px !important;
             }
-            .language-switcher{
-                gap: 8px;
-                margin-bottom: 15px;
-            }
 
             .lang-btn {
                 padding: 8px 12px;
@@ -630,4 +581,3 @@
         padding-bottom: max(20px, env(safe-area-inset-bottom));
     }
 }        
-

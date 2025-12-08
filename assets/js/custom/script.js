@@ -8,6 +8,9 @@ var currentLanguage = 'en';
 var selectedProductId= null;
 let tableInitialized = false;
 const isProductPage = !!document.querySelector('#storelist');
+const STORAGE_VERSION = 2;
+const englishRegex = /^[A-Za-z0-9\s.,'-]+$/;
+const arabicRegex = /^[\u0600-\u06FF0-9\s.,'-]+$/;
 
 function createActionButtons(productId) {
     return `<div class="action-buttons">
@@ -51,6 +54,22 @@ const setLanguage = (language) => {
     document.documentElement.dir = language ==='ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = language;
 
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Enable Bootstrap RTL or LTR
+        const rtlLink = document.getElementById("bootstrapRTL");
+        const ltrLink = document.getElementById("bootstrapLTR");
+
+        console.log("rtllink: ", rtlLink, " ltrLink: ", ltrLink);
+        if (language === 'ar') {
+            rtlLink.disabled = false;
+            ltrLink.disabled = true;
+        } else {
+            rtlLink.disabled = true;
+            ltrLink.disabled = false;
+        }
+
+    });
     updateLanguageButtons(language);
 
     if(tableInitialized && isProductPage && window.location.pathname.includes('index2.html')){
@@ -136,11 +155,11 @@ if(window.toastr){
 }
 const initTable = () => {
 
-    /*if ($.fn.DataTable.isDataTable("#storelist")) {
-        $("#storelist").DataTable().destroy();
+    if ($.fn.DataTable.isDataTable("#storelist")) {
+        $("#storelist").DataTable().destroy(true);
     }
 
-    if(!document.getElementById('storelist')) {
+   /* if(!document.getElementById('storelist')) {
         console.error("Table element with ID 'storelist' not found.");
         return null;
     }*/
@@ -162,8 +181,8 @@ const initTable = () => {
         responsive: false,
         columnDefs: [
        // { targets: 0, visible: true , searchable: true},    
-        { targets: 4, visible: false },
-        { targets: 5, orderable: false, searchable: false}
+        { targets: 5, visible: false },
+        { targets: 6, orderable: false, searchable: false}
         ],
         language: dataTablesLanguage[currentLanguage],
         autowidth: false,
@@ -190,10 +209,10 @@ function exportExcel() {
     data.forEach(row => {
         sheetData.push([
             row[0], // code
-            row[1], // name
-            row[2], // quantity
-            row[3].replace('$', ''), // price clean
-            row[4]  // hidden description
+            currentLanguage === 'ar' ? row[2] : row[1], // name based on lang
+            row[3], // quantity
+            row[4].replace('$', ''), // price clean
+            row[5]  // hidden description
         ]);
     });
 
@@ -254,7 +273,8 @@ function loadProductsFromStorage() {
             
             table.row.add([
                 product.code,
-                product.name,
+                product.nameEn,
+                product.nameAr ,
                 product.qty,
                 '$' + product.price,
                 product.description,
@@ -264,8 +284,54 @@ function loadProductsFromStorage() {
     }
     table.draw();
 }
+
+function resetProductsForNewVersion() {
+    const savedVersion = parseInt(localStorage.getItem("storageVersion") || "1");
+
+    if (savedVersion >= STORAGE_VERSION) return; // Already upgraded ✔
+
+    console.warn("Detected new version - Resetting product storage...");
+
+    // Remove only product_ keys
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith("product_")) {
+            keysToRemove.push(key);
+        }
+    }
+    keysToRemove.forEach(key => localStorage.removeItem(key));
+
+    // Add default sample data
+    const sampleProducts = [
+        { id: "1", code: "001", nameEn: "Keyboard", nameAr: "لوحة مفاتيح", qty: "5", price: "150", description: "Mechanical keyboard with RGB lighting" },
+        { id: "2", code: "002", nameEn: "Mouse", nameAr: "فأرة", qty: "10", price: "80", description: "Wireless ergonomic mouse" },
+        { id: "3", code: "003", nameEn: "Monitor", nameAr: "شاشة", qty: "2", price: "1200", description: "27-inch 4K UHD display" }
+    ];
+
+    sampleProducts.forEach(product =>
+        localStorage.setItem(`product_${product.id}`, JSON.stringify(product))
+    );
+
+    // Mark upgrade done
+    localStorage.setItem("storageVersion", STORAGE_VERSION.toString());
+
+    console.log("✔ Storage reset and dummy data inserted");
+}
+/*function hasAnyProducts() {
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);    
+        if (key.startsWith('product_')) {
+            return true;
+        }
+    }
+    return false;
+}
+*/
 if(window.jQuery){
     $(document).ready(function () {
+
+        resetProductsForNewVersion();
         //console.log("Document .ready script.js loaded");
         const language = getCookie("lang") || "en";
         
@@ -281,23 +347,22 @@ if(window.jQuery){
 
         table = initTable();
         tableInitialized = true;
-
-        if(localStorage.length===0){
+       /* if(!hasAnyProducts()){
             const sampleProducts = [
-                {id: generateUniqueId(), code: '001', name: 'Keyboard', qty: '5', price: '150', description: 'High-quality mechanical keyboard with RGB lighting' },
-                {id: generateUniqueId(), code: '002', name: 'Mouse', qty: '10', price: '80', description: 'Wireless mouse with ergonomic design' },
-                {id: generateUniqueId(), code: '003', name: 'Monitor', qty: '2', price: '1200', description: '27-inch 4K UHD display with HDR support' }
+                {id: generateUniqueId(), code: '001', nameEn: 'Keyboard',nameAr: 'لوحة مفاتيح',qty: '5', price: '150', description: 'High-quality mechanical keyboard with RGB lighting' },
+                {id: generateUniqueId(), code: '002', nameEn: 'Mouse',nameAr: 'فأرة', qty: '10', price: '80', description: 'Wireless mouse with ergonomic design' },
+                {id: generateUniqueId(), code: '003', nameEn: 'Monitor',nameAr: 'شاشة عرض', qty: '2', price: '1200', description: '27-inch 4K UHD display with HDR support' }
             ];
 
             sampleProducts.forEach(product => {
                 localStorage.setItem(`product_${product.id}`, JSON.stringify(product));
             });
         }
-        if(table){
-        loadProductsFromStorage();}
+        if(table){*/
+        loadProductsFromStorage();/*}
         else{
             console.error("Table initialization failed in document.ready.");
-        }
+        }*/
 
         productModal = new bootstrap.Modal(document.getElementById('productForm'),{
             
@@ -314,6 +379,7 @@ if(window.jQuery){
             resetForm();
             $("#codeError").text("");
             $("#productError").text("");
+            $("#productErrorAr").text("");
             
             // Open the modal
             productModal.show();
@@ -336,10 +402,23 @@ if(window.jQuery){
                 $("#codeError").text(lang.codeRequired);
                 hasError = true;
             }
-            if ( !formData.product) {
+            if ( !formData.productEn.trim()) {
+                
+                $("#productError").text(lang.nameEnRequired);
                 hasError = true;
-                $("#productError").text(lang.nameRequired);
+            }else if(!englishRegex.test(formData.productEn.trim())){
+                $("#productError").text(lang.nameEnInvalid);
+                hasError = true;
             }
+            if ( !formData.productAr.trim()) {
+                
+                $("#productErrorAr").text(lang.nameArRequired);
+                hasError = true;
+            }else if(!arabicRegex.test(formData.productAr.trim())){
+                $("#productErrorAr").text(lang.nameArInvalid);
+                hasError = true;
+            }
+
 
             if (hasError) {
                 return;
@@ -399,7 +478,8 @@ if(window.jQuery){
 function readFormData() {
     return {
         productCode: $("#productCode").val(),
-        product: $("#product").val(),
+        productEn: $("#productEn").val(),
+        productAr: $("#productAr").val(),
         qty: $("#qty").val(),
         perPrice: $("#perPrice").val(),
         description: $("#description").val()
@@ -413,15 +493,19 @@ function insertNewRecord(data) {
      localStorage.setItem(`product_${uniqueId}`, JSON.stringify({
         id: uniqueId,
         code: data.productCode,
-        name: data.product,
+        nameEn: data.productEn,
+        nameAr: data.productAr,
         qty: data.qty,
         price: data.perPrice,
         description: data.description
     }));
 
+    //const displayName = currentLanguage === 'ar' ? data.productAr : data.productEn;
+
      table.row.add([
         data.productCode,
-        data.product,
+        data.productEn,
+        data.productAr,
         data.qty,
         '$'+data.perPrice,
         data.description,
@@ -441,14 +525,16 @@ function onEdit(button) {
     const productId = $(button).data('product-id');
 
     $("#productCode").val(row.find("td").eq(0).text());
-    $("#product").val(row.find("td").eq(1).text());
-    $("#qty").val(row.find("td").eq(2).text());
-    var price=row.find("td").eq(3).text().replace('$', '');
+    
+    $("#qty").val(row.find("td").eq(3).text());
+    var price=row.find("td").eq(4).text().replace('$', '');
     $("#perPrice").val(price);
 
     const storageKey = `product_${productId}`;
     const product = JSON.parse(localStorage.getItem(storageKey));
     console.log("product: "+ product);
+    $("#productEn").val(product.nameEn);
+    $("#productAr").val(product.nameAr);
     $("#description").val(product.description);
     //$("#description").val(row.find("td").eq(4).text());
 
@@ -460,11 +546,14 @@ function onEdit(button) {
 function updateRecord(formData) {
   
     var cells = selectedRow.find("td");
+
+    //const displayName = currentLanguage === 'ar' ? formData.productAr : formData.productEn;
     //update visible cells
     cells.eq(0).text(formData.productCode);
-    cells.eq(1).text(formData.product);
-    cells.eq(2).text(formData.qty);
-    cells.eq(3).text('$' + formData.perPrice);
+    cells.eq(1).text(formData.productEn);
+    cells.eq(2).text(formData.productAr);
+    cells.eq(3).text(formData.qty);
+    cells.eq(4).text('$' + formData.perPrice);
     
     const storageKey = `product_${selectedProductId}`;
         
@@ -472,7 +561,8 @@ function updateRecord(formData) {
     localStorage.setItem(storageKey, JSON.stringify({
         id: selectedProductId,
         code: formData.productCode,
-        name: formData.product,
+        nameEn: formData.productEn,
+        nameAr: formData.productAr,
         qty: formData.qty,
         price: formData.perPrice,
         description: formData.description
@@ -501,11 +591,6 @@ function onDelete(button) {
         if (result.isConfirmed) {
             var row = $(button).closest("tr");
 
-           // var actionCell = row.find("td").eq(5).html();
-            //var codeMatch = actionCell.match(/code=([^"]+)/);
-            
-           // if (codeMatch) {
-                //const productId = decodeURIComponent(codeMatch[1]);
             const storageKey = `product_${productId}`;
             localStorage.removeItem(storageKey);
             //}

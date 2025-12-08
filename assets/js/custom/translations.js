@@ -16,7 +16,10 @@ const translations = {
         labelQty: "Qty",
         labelPrice: "Price",
         codeRequired: "Product Code is required.",
-        nameRequired: "Product Name is required.",
+        nameEnRequired: "English Product Name is required.",
+        nameArRequired: "Arabic Product Name is required.",
+        nameEnInvalid: "Name (English) must contain only English letters",
+        nameArInvalid: "Name (Arabic) must contain only English letters",
         detailsTitle: "Product Details",
         backButton: "Back",
 
@@ -58,7 +61,10 @@ const translations = {
         labelQty: "الكمية",
         labelPrice: "السعر",
         codeRequired: "كود المنتج مطلوب.",
-        nameRequired: "اسم المنتج مطلوب.",
+        nameEnRequired: "اسم المنتج بالإنجليزية مطلوب.",
+        nameArRequired: "اسم المنتج بالعربية مطلوب.",
+        nameEnInvalid: "يجب أن يحتوي الاسم (بالإنجليزية) على أحرف إنجليزية فقط",
+        nameArInvalid: "يجب أن يحتوي الاسم (بالعربية) على أحرف عربية فقط",
         detailsTitle: "تفاصيل المنتج",
         backButton: "رجوع",
 

@@ -24,7 +24,7 @@ function loadProductDetails(code) {
         console.log('Parsed data:', productData);
         
         document.getElementById('productCode').textContent = productData.code ;
-        document.getElementById('product').textContent = productData.name ;
+        document.getElementById('product').textContent = `${productData.nameEn} / ${productData.nameAr}`;
         document.getElementById('qty').textContent = productData.qty ;
         document.getElementById('perPrice').textContent = productData.price;
         document.getElementById('description').textContent = productData.description;
